@@ -1,0 +1,4 @@
+test/temp/*
+test/another_temp/*
+composer.lock
+vendor/*

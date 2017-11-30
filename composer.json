@@ -1,0 +1,28 @@
+{
+        "name": "atk14/http",
+        "type": "library",
+        "description": "PHP classes encapsulating HTTP request, HTTP response, cookie, uploaded file etc. This package is part of the ATK14 Framework.",
+        "keywords": ["string","atk14"],
+        "homepage": "https://github.com/atk14/String4",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "Jaromir Tomek",
+                        "homepage": "https://github.com/yarri"
+                }
+        ],
+        "require": {
+                "php": ">=5.3.0",
+                "atk14/string-buffer": "*",
+                "atk14/translate": "*",
+                "atk14/files": "*"
+        },
+        "require-dev": {
+                "phpunit/phpunit": "4.8.*",
+                "atk14/string4": "*",
+                "atk14/url-fetcher": "*"
+        },
+        "autoload": {
+                "classmap": ["src"]
+        }
+}
