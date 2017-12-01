@@ -2,8 +2,8 @@
         "name": "atk14/http",
         "type": "library",
         "description": "PHP classes encapsulating HTTP request, HTTP response, cookie, uploaded file etc. This package is part of the ATK14 Framework.",
-        "keywords": ["string","atk14"],
-        "homepage": "https://github.com/atk14/String4",
+        "keywords": ["http","request","atk14"],
+        "homepage": "https://github.com/atk14/Http",
         "license": ["MIT"],
         "authors": [
                 {
