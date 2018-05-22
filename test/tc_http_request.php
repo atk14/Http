@@ -467,6 +467,25 @@ class tc_http_request extends tc_base{
 		$this->assertEquals("/index.php",$request->getRequestUri());
 	}
 
+	function test_getRequestAddress(){
+		global $_SERVER;
+		$_SERVER["REQUEST_URI"] = "/contact.php";
+		$_SERVER["SERVER_PORT"] = "81";
+		$_SERVER["HTTP_HOST"] = "www.testiq.cz";
+
+		$request = new HTTPRequest();
+		$this->assertEquals("http://www.testiq.cz:81/contact.php",$request->getRequestAddress());
+		$this->assertEquals("http://www.testiq.cz:81/contact.php",$request->getUrl());
+
+		$request->setRequestAddress("https://www.example.com/list.php");
+		$this->assertEquals("https://www.example.com/list.php",$request->getRequestAddress());
+		$this->assertEquals("https://www.example.com/list.php",$request->getUrl());
+
+		$request->setUrl("https://www.test.cz/calendar.php");
+		$this->assertEquals("https://www.test.cz/calendar.php",$request->getRequestAddress());
+		$this->assertEquals("https://www.test.cz/calendar.php",$request->getUrl());
+	}
+
 	function test_getGetVars(){
 		global $_GET;
 		$_GET = array("id" => "123", "format" => "xml");
@@ -547,6 +566,20 @@ class tc_http_request extends tc_base{
 		$this->assertEquals(444,$request->getServerPort());
 		$this->assertEquals(true,$request->ssl());
 		$this->assertEquals(false,$request->isServerOnStandardPort());
+	}
+
+	function test_getRemoteHostname(){
+		$_SERVER["REMOTE_ADDR"] = "127.0.0.1";
+		$request = new HTTPRequest();
+		$this->assertTrue(in_array($request->getRemoteHostname(),array("localhost.localdomain","localhost")));
+
+		$_SERVER["REMOTE_ADDR"] = "8.8.8.8";
+		$request = new HTTPRequest();
+		$this->assertEquals("google-public-dns-a.google.com",$request->getRemoteHostname());
+
+		unset($_SERVER["REMOTE_ADDR"]);
+		$request = new HTTPRequest();
+		$this->assertEquals(null,$request->getRemoteHostname());
 	}
 
 	/**

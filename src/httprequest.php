@@ -263,6 +263,10 @@ class HTTPRequest{
 	 * @return string
 	 */
 	function getRequestAddress(){
+		if($url = $this->_getForceValue("RequestAddress")){
+			return $url;
+		}
+
 		$proto = $this->sslActive() ? "https" : "http";
 		$port = "";
 		if($this->sslActive() && $this->getServerPort()!=443){
@@ -276,11 +280,24 @@ class HTTPRequest{
 		return "$proto://$hostname$port$uri";
 	}
 
+	function setRequestAddress($url){
+		$this->_setForceValue("RequestAddress",$url);
+	}
+
 	/**
 	 * Alias for getRequestUri()
 	 * @return string
 	 */
-	function getUrl(){ return $this->getRequestAddress(); }
+	function getUrl(){
+		return $this->getRequestAddress();
+	}
+
+	/**
+	 * Alias for setRequestAddress()
+	 */
+	function setUrl($url){
+		$this->setRequestAddress($url);
+	}
 
 	/**
 	 * Gets HTTP referer.
@@ -321,6 +338,12 @@ class HTTPRequest{
 	function getRemotePort(){
 		if($addr = $this->_getForceValue("RemotePort")){ return $addr; }
 		return isset($GLOBALS["_SERVER"]["REMOTE_PORT"]) ? $GLOBALS["_SERVER"]["REMOTE_PORT"] : null;
+	}
+
+	function getRemoteHostname(){
+		if($addr = $this->getRemoteAddr()){
+			return gethostbyaddr($addr);
+		}
 	}
 
 	/**
