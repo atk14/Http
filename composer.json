@@ -18,7 +18,7 @@
                 "atk14/files": "*"
         },
         "require-dev": {
-                "phpunit/phpunit": "4.8.*",
+                "atk14/tester": "dev-master",
                 "atk14/string4": "*",
                 "atk14/url-fetcher": "*"
         },
