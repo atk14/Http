@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2] - 2019-03-15
+
 ### Methods added
 - HTTPRequest::setRequestAddress()
 - HTTPRequest::getRemoteHostname()
