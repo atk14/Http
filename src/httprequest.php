@@ -254,11 +254,37 @@ class HTTPRequest{
 	function setUri($uri){ $this->setRequestUri($uri); }
 
 	/**
+	 * Returns Query sting
+	 *
+	 * ```
+	 * // consider URL https:/example.com/articles/list.php?tag=love&offset=20
+	 * echo $request->getQueryString(); // "tag=love&offset=20"
+	 * echo $request->getQueryString(true); // "?tag=love&offset=20"
+	 *
+	 * // consider URL https:/example.com/articles/list.php
+	 * echo $request->getQueryString(); // ""
+	 * echo $request->getQueryString(true); // ""
+	 * ```
+	 *
+	 * @return string
+	 */
+	function getQueryString($prepend_question_mark = false){
+		$uri = $this->getRequestUri();
+		$ary = explode('?',$uri);
+		array_shift($ary);
+		$query_string = join('?',$ary);
+		if($prepend_question_mark && strlen($query_string)){
+			return "?".$query_string;
+		}
+		return $query_string;
+	}
+
+	/**
 	 * Returns complete address for this request
 	 *
-	 * <code>
+	 * ```
 	 * echo $HTTP_REQUEST->getRequestAddress(); // e.g. "http://www.grand-book-store.com/en/books/detail/?id=123"
-	 * </code>
+	 * ```
 	 *
 	 * @return string
 	 */
@@ -269,10 +295,10 @@ class HTTPRequest{
 
 		$proto = $this->sslActive() ? "https" : "http";
 		$port = "";
-		if($this->sslActive() && $this->getServerPort()!=443){
+		if($this->sslActive() && $this->getServerPort() && $this->getServerPort()!=443){
 			$port = ":".$this->getServerPort();
 		}
-		if(!$this->sslActive() && $this->getServerPort()!=80){
+		if(!$this->sslActive() && $this->getServerPort() && $this->getServerPort()!=80){
 			$port = ":".$this->getServerPort();
 		}
 		$hostname = $this->getHttpHost();
@@ -286,6 +312,7 @@ class HTTPRequest{
 
 	/**
 	 * Alias for getRequestUri()
+	 *
 	 * @return string
 	 */
 	function getUrl(){
@@ -528,9 +555,22 @@ class HTTPRequest{
 	 */
 	function getMethod(){ return $this->getRequestMethod(); }
 
+	/**
+	 * Sets http request method.
+	 *
+	 * @param string $method eg. POST, GET
+	 */
 	function setRequestMethod($method){
 		$this->_setForceValue("RequestMethod",strtoupper($method));
 	}
+
+	/**
+	 * Sets http request method.
+	 *
+	 * Alias to {@see setRequestMethod}.
+	 *
+	 * @param string $method eg. POST, GET
+	 */
 	function setMethod($method){ $this->setRequestMethod($method); }
 
 	/**
