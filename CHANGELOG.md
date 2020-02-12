@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.1] - 2020-02-12
+
+- Content-Length header is being checked in HTTPXFile::GetInstance()
+
 ## [0.3] - 2019-10-22
 
 ### Added
