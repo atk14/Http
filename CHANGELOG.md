@@ -3,7 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.4] - 2020-02-21
+## [0.5] - 2020-10-31
+
+- Added support for samesite option for cookies
+- Added static method HTTPCookie::DefaultOptions()
+
+## [0.4] - 2020-10-31
 
 - Added method HTTPRequest::setSslActive()
 - Project is being tested in PHP8
