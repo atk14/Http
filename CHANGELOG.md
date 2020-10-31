@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.4] - 2020-02-21
+
+- Added method HTTPRequest::setSslActive()
+- Project is being tested in PHP8
+
 ## [0.3.1] - 2020-02-12
 
 - Content-Length header is being checked in HTTPXFile::GetInstance()
