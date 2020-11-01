@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.5.2] - 2020-11-01
+
+- HTTPRequest::sslActive() fixed
+
 ## [0.5.1] - 2020-11-01
 
 - HTTPRequest::sslActive() fixed
