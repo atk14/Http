@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.6] - 2020-01-29
+
+- Added method HTTPUploadedFile::getTotalFileSize() which is useful for chunked uploads
+
 ## [0.5.2] - 2020-11-01
 
 - HTTPRequest::sslActive() fixed
