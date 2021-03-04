@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7] - 2020-03-04
+
+- Files::GetImageSize() is used to determine geometry of an uploaded image
+- Package atk14/files is required in version >=1.6.1
+
 ## [0.6] - 2020-01-29
 
 - Added method HTTPUploadedFile::getTotalFileSize() which is useful for chunked uploads
