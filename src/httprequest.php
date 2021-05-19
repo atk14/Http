@@ -755,6 +755,24 @@ class HTTPRequest{
 	function sslActive(){
 		if(!is_null($var = $this->_getForceValue("SslActive"))){ return $var; }
 
+		if(isset($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_PROTO"])){
+			if($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_PROTO"]==="https"){
+				return true;
+			}
+			if($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_PROTO"]==="http"){
+				return false;
+			}
+		}
+
+		if(isset($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"])){
+			if(in_array(strtolower($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"]),array("on","true","1","yes","y"))){
+				return true;
+			}
+			if(in_array(strtolower($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"]),array("off","false","0","no","n"))){
+				return false;
+			}
+		}
+
 		if(isset($GLOBALS["_SERVER"]["HTTPS"]) && in_array(strtolower($GLOBALS["_SERVER"]["HTTPS"]),array("on","true","1","yes","y"))){
 			return true;
 		}
