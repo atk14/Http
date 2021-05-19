@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8] - 2021-05-19
+
+- HTTPRequest::sslActive() improved - better detection using $_SERVER["HTTP_X_FORWARDED_PROTO"] and $_SERVER["HTTP_X_FORWARDED_SSL"]
+
 ## [0.7] - 2020-03-04
 
 - Files::GetImageSize() is used to determine geometry of an uploaded image
