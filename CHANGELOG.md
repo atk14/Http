@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.1] - 2024-03-14
+
+* 9d1cc40 - Added method HTTPResponse::temporarilyUnavailable($message = null)
+* 8e032de - Added description "I'm a teapot" for response code 418
+* PHP 8.1 compatibilities
+* b0208fd - `HTTPResponse::_flushHeaders()` prints headers to stdout in cli
+
 ## [0.8] - 2021-05-19
 
 - HTTPRequest::sslActive() improved - better detection using $_SERVER["HTTP_X_FORWARDED_PROTO"] and $_SERVER["HTTP_X_FORWARDED_SSL"]
