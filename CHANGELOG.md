@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.2] - 2024-08-14
+
+* 8b8e9ff - Atk14Client can simulate file uploads
+
 ## [0.8.1] - 2024-03-14
 
 * 9d1cc40 - Added method HTTPResponse::temporarilyUnavailable($message = null)
