@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.3] - 2025-01-27
+
+* 041b3c5 - Added some new HTTP status codes
+
 ## [0.8.2] - 2024-08-14
 
 * 8b8e9ff - Atk14Client can simulate file uploads
