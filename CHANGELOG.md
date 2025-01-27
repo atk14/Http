@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.4] - 2025-01-27
+
+* c595dae - List of response codes fixed
+
 ## [0.8.3] - 2025-01-27
 
 * 041b3c5 - Added some new HTTP status codes
