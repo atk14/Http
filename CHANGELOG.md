@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.5] - 2025-03-25
+
+* 1b4829c - The HTTPRequest::getRequestUri() and HTTPRequest::getUrl() methods return NULL if there is nothing to return
+
 ## [0.8.4] - 2025-01-27
 
 * c595dae - List of response codes fixed
