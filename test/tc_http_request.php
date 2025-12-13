@@ -238,10 +238,16 @@ class tc_http_request extends tc_base{
 		$req = new HTTPRequest();
 
 		$this->assertEquals("www.test.cz",$req->getHttpHost());
+		$this->assertEquals("http://www.test.cz",$req->getServerUrl());
 		
 		$req->setHttpHost("www.fake.cz");
 
 		$this->assertEquals("www.fake.cz",$req->getHttpHost());
+		$this->assertEquals("http://www.fake.cz",$req->getServerUrl());
+
+		$req->setServerPort(81);
+
+		$this->assertEquals("http://www.fake.cz:81",$req->getServerUrl());
 	}
 
 	function test_getScheme(){
@@ -290,6 +296,15 @@ class tc_http_request extends tc_base{
 		$req->setUri("/force-uri/");
 		$this->assertEquals("/force-uri/",$req->getRequestUri());
 		$this->assertEquals("/force-uri/",$req->getUri());
+
+		$req->setUri(null);
+		$this->assertEquals("/test-uri/",$req->getRequestUri());
+
+		$req->setRequestAddress("https://www.example.com:444/public/document.pdf?v=2");
+		$this->assertEquals("/public/document.pdf?v=2",$req->getRequestUri());
+
+		$req->setRequestAddress(null);
+		$this->assertEquals("/test-uri/",$req->getRequestUri());
 	}
 
 	function test_set_xhr(){
