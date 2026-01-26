@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.7] - 2026-01-26
+
+* e3b8cc4 - HTTPRequest::getRemoteHostname() improved
+
 ## [0.8.6] - 2025-12-13
 
 * 760c666 - HTTPRequest::getServerUri() fixed
