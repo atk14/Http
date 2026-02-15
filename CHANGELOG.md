@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.8] - 2026-02-15
+
+* e685a83 - Added parameter $error_str to HTTPUploadedFile::moveTo($filename,&$error_str = null)
+
 ## [0.8.7] - 2026-01-26
 
 * e3b8cc4 - HTTPRequest::getRemoteHostname() improved
