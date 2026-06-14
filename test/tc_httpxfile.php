@@ -139,7 +139,7 @@ class tc_httpxfile extends tc_base{
 		$_FILES = null;
 
 		$HTTP_REQUEST->setMethod("post");
-		$HTTP_REQUEST->_HTTPRequest_headers = array("X-File-Name" => "hlava.jpg");
+		$HTTP_REQUEST->setHeader("X-File-Name","hlava.jpg");
 		$this->assertEquals("hlava.jpg",$HTTP_REQUEST->getHeader("x-file-name"));
 
 		$GLOBALS["HTTP_RAW_POST_DATA"] = Files::GetFileContent("hlava.jpg",$err,$err_str);
@@ -168,7 +168,6 @@ class tc_httpxfile extends tc_base{
 		// cisteni
 		$HTTP_REQUEST->setMethod("get");
 		$HTTP_RAW_POST_DATA = null;
-		$HTTP_REQUEST->_HTTPRequest_headers = array();
 		$this->assertNull(HTTPXFile::GetInstance(array("name" => "file.jpg")));
 	}
 

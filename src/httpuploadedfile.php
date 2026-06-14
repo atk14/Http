@@ -17,19 +17,19 @@ class HTTPUploadedFile{
 	 * @var array
 	 * @access private
 	 */
-	var $_FILE = array();
+	protected $_FILE = array();
 
 	/**
 	 * @var string
 	 * @access private
 	 */
-	var $_Name = ""; // image
+	protected $_Name = ""; // image
 
 	/**
 	 * @var string
 	 * @access private
 	 */
-	var $_TmpFileName = ""; // /tmp/Xis403s
+	protected $_TmpFileName = ""; // /tmp/Xis403s
 
 	/**
 	 * The original name of the file on the client machine.
@@ -37,31 +37,31 @@ class HTTPUploadedFile{
 	 * @var string
 	 * @access private
 	 */
-	var $_FileName  = ""; // my_image.jpg
+	protected $_FileName  = ""; // my_image.jpg
 
 	/**
 	 * @var string
 	 * @access private
 	 */
-	var $_MimeType = null;
+	protected $_MimeType = null;
 
 	/**
 	 * @var boolean
 	 * @access private
 	 */
-	var $_TestingMode = false;
+	protected $_TestingMode = false;
 
 	/**
 	 * @var boolean
 	 * @access private
 	 */
-	var $_FileMoved = false;
+	protected $_FileMoved = false;
 
-	var $_ImageWidth;
+	protected $_ImageWidth;
 
-	var $_ImageHeight;
+	protected $_ImageHeight;
 
-	var $_ImageGeometryDetermined;
+	protected $_ImageGeometryDetermined;
 
 	function __construct(){
 

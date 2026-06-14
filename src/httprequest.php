@@ -82,11 +82,9 @@ class HTTPRequest{
 	protected $_HTTPRequest_scriptFilename = "";
 
 	/**
-	 * 
-	 * TODO: should be protected...
-	 * 
+	 * @var array
 	 */
-	var $_HTTPRequest_headers = array();
+	protected $_HTTPRequest_headers = array();
 
 	/**
 	 * @var array
@@ -1290,8 +1288,11 @@ class HTTPRequest{
 	 * @return array
 	 */
 	function getHeaders(){
-		($headers = $this->_getForceValue("headers")) || ($headers = array());
-		return array_merge($this->_HTTPRequest_headers,$headers);
+		($individual_headers = $this->_getForceValue("individual_headers")) || ($individual_headers = array());
+
+		($headers = $this->_getForceValue("headers")) || ($headers = $this->_HTTPRequest_headers);
+
+		return array_merge($headers,$individual_headers);
 	}
 
 	/**
@@ -1315,18 +1316,30 @@ class HTTPRequest{
 	}
 
 	/**
-	 * Sets a header to a value.
+	 * Sets an individual header to a value.
 	 *
 	 * @param string $header
 	 * @param string $value
 	 */
 	function setHeader($header,$value){
-		($headers = $this->_getForceValue("headers")) || ($headers = array());
+		($headers = $this->_getForceValue("individual_headers")) || ($headers = array());
 		$headers[$header] = $value;
-		$this->_setForceValue("headers",$headers);
+		$this->_setForceValue("individual_headers",$headers);
 	}
 
-
+	/**
+	 * Sets headers.
+	 *
+	 *	$request->setHeaders([
+	 *		"Header1" => "Value1",
+	 *		"Header2" => "Value2",
+	 *	]);
+	 *
+	 * @param array $headers
+	 */
+	function setHeaders($headers){
+		$this->_setForceValue("headers",$headers);
+	}
 
 	/**
 	 * Detects mobile device.

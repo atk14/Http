@@ -325,25 +325,25 @@ class tc_http_request extends tc_base{
 		$this->assertTrue(is_array($req->getHeaders()));
 		$this->assertEquals(null,$req->getHeader("Non-Existing-Header"));
 
-		$req->_HTTPRequest_headers = array("Test-Header" => "Header_Value");
+		$req->setHeader("Test-Header","Header_Value");
 
 		$this->assertEquals("Header_Value",$req->getHeader("Test-Header"));
 		$this->assertEquals("Header_Value",$req->getHeader("TEST-HEADER"));
 		$this->assertEquals("Header_Value",$req->getHeader("test-header"));
 
-		// zjistovani xhr() se hlavicek tyka...
+		// zjistovani xhr() se hlavice tyka...
 		$this->assertEquals(false,$req->xhr());
 
-		$req->_HTTPRequest_headers = array("X-Requested-With" => "xmlhttprequest");
+		$req->setHeaders(array("X-Requested-With" => "xmlhttprequest"));
 		$this->assertEquals(true,$req->xhr());
 
-		$req->_HTTPRequest_headers = array("X-Requested-With" => "XmlHttpRequest");
+		$req->setHeaders(array("X-Requested-With" => "XmlHttpRequest"));
 		$this->assertEquals(true,$req->xhr());
 
-		$req->_HTTPRequest_headers = array("x-requested-with" => "XmlHttpRequest");
+		$req->setHeaders(array("x-requested-with" => "XmlHttpRequest"));
 		$this->assertEquals(true,$req->xhr());
 
-		$req->_HTTPRequest_headers = array("x-requXXestedwith" => "XmlHttpRequest");
+		$req->setHeaders(array("x-requXXestedwith" => "XmlHttpRequest"));
 		$this->assertEquals(false,$req->xhr());
 
 		// 
