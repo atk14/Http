@@ -84,12 +84,12 @@ class HTTPRequest{
 	/**
 	 * @var array
 	 */
-	protected $_HTTPRequest_headers = array();
+	protected $_HTTPRequest_headers = [];
 
 	/**
 	 * @var array
 	 */
-	protected $_SSLPorts = array(443);
+	protected $_SSLPorts = [443];
 
 	//var $_HTTPRequest_paramsGet = array();
 	//var $_HTTPRequest_paramsPost = array();
@@ -117,7 +117,7 @@ class HTTPRequest{
 	 * @var array
 	 * @ignore
 	 */
-	protected $_ForceValues = array();
+	protected $_ForceValues = [];
 
 
 	/**
@@ -152,7 +152,7 @@ class HTTPRequest{
 		if(function_exists("getallheaders")){ // in CLI there is no function getallheaders()
 			$_headers = getallheaders();
 		}else{
-			$_headers = array();
+			$_headers = [];
 			foreach($_SERVER as $k => $v){
 				if(substr($k,0,5)=="HTTP_"){ // HTTP_HOST, HTTP_USER_AGENT
 					$k = substr($k,5);
@@ -583,7 +583,7 @@ class HTTPRequest{
 		if(isset($GLOBALS["_SERVER"]["REQUEST_METHOD"])){
 			$out = $GLOBALS["_SERVER"]["REQUEST_METHOD"];
 			if($out == "POST" && ($_method = strtoupper((string)$this->getVar("_method","PG")))){
-				$out = in_array($_method,array("DELETE","PUT")) ? $_method : $out;
+				$out = in_array($_method,["DELETE","PUT"]) ? $_method : $out;
 			}
 			return $out;
 		}
@@ -780,15 +780,15 @@ class HTTPRequest{
 		}
 
 		if(isset($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"])){
-			if(in_array(strtolower($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"]),array("on","true","1","yes","y"))){
+			if(in_array(strtolower($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"]),["on","true","1","yes","y"])){
 				return true;
 			}
-			if(in_array(strtolower($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"]),array("off","false","0","no","n"))){
+			if(in_array(strtolower($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_SSL"]),["off","false","0","no","n"])){
 				return false;
 			}
 		}
 
-		if(isset($GLOBALS["_SERVER"]["HTTPS"]) && in_array(strtolower($GLOBALS["_SERVER"]["HTTPS"]),array("on","true","1","yes","y"))){
+		if(isset($GLOBALS["_SERVER"]["HTTPS"]) && in_array(strtolower($GLOBALS["_SERVER"]["HTTPS"]),["on","true","1","yes","y"])){
 			return true;
 		}
 
@@ -1096,7 +1096,7 @@ class HTTPRequest{
 	 *
 	 */
 	function getVars($order = "GPC"){
-		$out = array();
+		$out = [];
 
 		$chars = array_reverse(preg_split('//', $order, -1, PREG_SPLIT_NO_EMPTY));
 		foreach($chars as $char){
@@ -1111,7 +1111,7 @@ class HTTPRequest{
 					$vars = $this->getCookieVars();
 					break;
 				default:
-					$vars = array();
+					$vars = [];
 			}
 			$out = array_merge($out,$vars);
 		}
@@ -1146,7 +1146,7 @@ class HTTPRequest{
 	 * @param array $options 
 	 * @return array array of HTTPUploadedFile instances
 	 */
-	function getUploadedFiles($options = array()){
+	function getUploadedFiles($options = []){
 		if($forced_uf = $this->_getForceValue("UploadedFiles")){ return $forced_uf; }
 		return HTTPUploadedFile::GetInstances($options);
 	}
@@ -1202,7 +1202,7 @@ class HTTPRequest{
 	 * @return HTTPUploadedFile|HTTPXFile
 	 * @todo various operations komentare presunout do popisu tridy HTTPUploadedFile
 	 */
-	function getUploadedFile($name = null,$options = array()){
+	function getUploadedFile($name = null,$options = []){
 		$out = null;
 		$files = $this->getUploadedFiles($options);
 		foreach($files as $file){
@@ -1212,7 +1212,7 @@ class HTTPRequest{
 			}
 		}
 
-		if(!$out){ $out = HTTPXFile::GetInstance(array("name" => $name, "request" => $this)); }
+		if(!$out){ $out = HTTPXFile::GetInstance(["name" => $name, "request" => $this]); }
 
 		return $out;
 	}
@@ -1252,7 +1252,7 @@ class HTTPRequest{
 		}
 
 		$headers = $this->_HTTPRequest_headers;
-		$static_ar = array();
+		$static_ar = [];
 		foreach($headers as $key => $value){
 			switch(strtoupper(trim($key))){
 				//case "ACCEPT": --> MSIE CHANGES IT DYNAMICALLY :)
@@ -1288,7 +1288,7 @@ class HTTPRequest{
 	 * @return array
 	 */
 	function getHeaders(){
-		($individual_headers = $this->_getForceValue("individual_headers")) || ($individual_headers = array());
+		($individual_headers = $this->_getForceValue("individual_headers")) || ($individual_headers = []);
 
 		($headers = $this->_getForceValue("headers")) || ($headers = $this->_HTTPRequest_headers);
 
@@ -1322,7 +1322,7 @@ class HTTPRequest{
 	 * @param string $value
 	 */
 	function setHeader($header,$value){
-		($headers = $this->_getForceValue("individual_headers")) || ($headers = array());
+		($headers = $this->_getForceValue("individual_headers")) || ($headers = []);
 		$headers[$header] = $value;
 		$this->_setForceValue("individual_headers",$headers);
 	}
@@ -1374,7 +1374,7 @@ class HTTPRequest{
 			return true;
 		}
 		// build an array with the first four characters from the most common mobile user agents
-		$a = array(
+		$a = [
 											'acs-'=>'acs-',
 											'alav'=>'alav',
 											'alca'=>'alca',
@@ -1464,7 +1464,7 @@ class HTTPRequest{
 											'winw'=>'winw',
 											'winw'=>'winw',
 											'xda-'=>'xda-'
-										);
+										];
 		// check if the first four characters of the current user agent are set as a key in the array
 		if(isset($user_agent) && isset($a[substr($user_agent,0,4)])){
 			return true;
@@ -1492,7 +1492,7 @@ class HTTPRequest{
 	 *
 	 */
 	function getAllEncodedGetvars(){
-    $output = array();
+    $output = [];
     foreach ($GLOBALS["_GET"] as $name => $value) {
         $output[] = "$name=$value";
     }

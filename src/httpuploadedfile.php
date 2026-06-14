@@ -17,7 +17,7 @@ class HTTPUploadedFile{
 	 * @var array
 	 * @access private
 	 */
-	protected $_FILE = array();
+	protected $_FILE = [];
 
 	/**
 	 * @var string
@@ -67,10 +67,10 @@ class HTTPUploadedFile{
 
 	}
 
-	static function GetInstances($options = array()){
+	static function GetInstances($options = []){
 		global $_FILES;
 
-		$out = array();
+		$out = [];
 		
 		if(!isset($_FILES)){ return $out; }
 
@@ -97,10 +97,10 @@ class HTTPUploadedFile{
 	 * @return HTTPUploadedFile
 	 * @static
 	 */
-	static function GetInstance($FILE,$name = "file",$options = array()){
-		$options = array_merge(array(
+	static function GetInstance($FILE,$name = "file",$options = []){
+		$options = array_merge([
 			"testing_mode" => false
-		),$options);
+		],$options);
 		if(isset($FILE["error"]) && $FILE["error"]>0){
 			return null;
 		}
@@ -142,10 +142,10 @@ class HTTPUploadedFile{
 	 * 	- sanitize
 	 * @return string
 	 */
-	function getFileName($options = array()){
-		$options += array(
+	function getFileName($options = []){
+		$options += [
 			"sanitize" => true,
-		);
+		];
 		$filename = $this->_FileName;
 		if($options["sanitize"]){
 			$filename = $this->_sanitizeFileName($filename);
@@ -348,9 +348,9 @@ class HTTPUploadedFile{
 	 * @return string
 	 */
 	private function _determineFileType(){
-		return Files::DetermineFileType($this->getTmpFileName(),array(
+		return Files::DetermineFileType($this->getTmpFileName(),[
 			"original_filename" => $this->getFileName(),
-		));
+		]);
 	}
 
 	/**
