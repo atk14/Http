@@ -121,7 +121,7 @@ class tc_http_response extends tc_base{
 
 		//
 		$cookies = $resp->getCookies();
-		$this->assertEquals(4,sizeof($cookies));
+		$this->assertEquals(4,count($cookies));
 
 		$this->assertEquals("check",$cookies[0]->getName());
 		$this->assertEquals("1",$cookies[0]->getValue());
@@ -138,9 +138,9 @@ class tc_http_response extends tc_base{
 		$this->assertEquals($far_future + $day,$cookies[3]->getExpire());
 
 		// clearing cookies
-		$this->assertEquals(4,sizeof($resp->getCookies()));
+		$this->assertEquals(4,count($resp->getCookies()));
 		$resp->clearCookies();
-		$this->assertEquals(0,sizeof($resp->getCookies()));
+		$this->assertEquals(0,count($resp->getCookies()));
 	}
 
 	function test_concatenate(){
@@ -151,8 +151,8 @@ class tc_http_response extends tc_base{
 		$final_resp->setHeader("X-Powered-By","PHP");
 		//
 		$this->assertEquals("text/html",$final_resp->getContentType());
-		$this->assertEquals(1,sizeof($final_resp->getCookies()));
-		$this->assertEquals(1,sizeof($final_resp->getHeaders()));
+		$this->assertEquals(1,count($final_resp->getCookies()));
+		$this->assertEquals(1,count($final_resp->getHeaders()));
 		$this->assertEquals(200,$final_resp->getStatusCode());
 		$this->assertEquals("OK",$final_resp->getStatusMessage());
 
@@ -171,12 +171,12 @@ class tc_http_response extends tc_base{
 		$this->assertEquals("text/plain",$final_resp->getContentType());
 		//
 		$cookies = $final_resp->getCookies();
-		$this->assertEquals(2,sizeof($cookies));
+		$this->assertEquals(2,count($cookies));
 		$this->assertEquals($cookies[0]->getName(),"check");
 		$this->assertEquals($cookies[1]->getName(),"secret");
 		//
 		$headers = $final_resp->getHeaders();
-		$this->assertEquals(2,sizeof($headers));
+		$this->assertEquals(2,count($headers));
 		$this->assertEquals([
 			"X-Powered-By" => "ATK14 Framework",
 			"X-Forwarded-For" => "1.2.3.4",

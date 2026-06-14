@@ -729,7 +729,7 @@ class tc_http_request extends tc_base{
 	* Porovna dve asociativni pole bez ohledu na poradi klicu.
 	*/
 	function _compare_arrays($template,$arry){
-		$this->assertEquals(sizeof($template),sizeof($arry));
+		$this->assertEquals(count($template),count($arry));
 
 		$arry_keys = array_keys($arry);
 

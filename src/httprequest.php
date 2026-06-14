@@ -1077,7 +1077,7 @@ class HTTPRequest{
 	 *
 	 * @return boolean
 	 */
-	function cookiesEnabled(){ return sizeof($this->getCookieVars())>0; }
+	function cookiesEnabled(){ return count($this->getCookieVars())>0; }
 
 	/**
 	 * Returns all variables of specified type from request.
@@ -1125,7 +1125,7 @@ class HTTPRequest{
 	 * @return true
 	 */
 	function filesUploaded(){
-		return sizeof($this->getUploadedFiles())>0;
+		return count($this->getUploadedFiles())>0;
 	}
 
 	/**
@@ -1137,7 +1137,7 @@ class HTTPRequest{
 		//echo "<pre>";
 		//var_dump($GLOBALS["_FILES"]);
 		//echo "</pre>";
-		return sizeof($this->getUploadedFiles())==sizeof($GLOBALS["_FILES"]);
+		return count($this->getUploadedFiles())==count($GLOBALS["_FILES"]);
 	}
 
 	/**

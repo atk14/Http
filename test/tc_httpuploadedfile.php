@@ -14,10 +14,10 @@ class tc_httpuploadedfile extends tc_base{
 		$this->_init_FILES();
 
 		$files = HTTPUploadedFile::GetInstances();
-		$this->assertEquals(0,sizeof($files)); // zde se musi poznat, ze "podvrzene" soubory nejsou ve skutecnosti uploadnuty
+		$this->assertEquals(0,count($files)); // zde se musi poznat, ze "podvrzene" soubory nejsou ve skutecnosti uploadnuty
 
 		$files = HTTPUploadedFile::GetInstances(["testing_mode" => true]);
-		$this->assertEquals(2,sizeof($files));
+		$this->assertEquals(2,count($files));
 
 		$hlava = $files[0];
 		$this->assertTrue($hlava->isImage());
@@ -29,7 +29,7 @@ class tc_httpuploadedfile extends tc_base{
 		$GLOBALS["_FILES"]["hlava"]["error"] = 3; // The uploaded file was only partially uploaded.
 
 		$files = HTTPUploadedFile::GetInstances(["testing_mode" => true]);
-		$this->assertEquals(1,sizeof($files));
+		$this->assertEquals(1,count($files));
 		$this->assertEquals("Dousi.pdf",$files[0]->getFileName());
 
 		$this->assertEquals(15257,$files[0]->getFileSize());
